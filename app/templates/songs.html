@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}Palak Mucchal Top Songs{% endblock %}
+
+{% block content %}
+<h2 class="songs-title">Palak Mucchal Top Songs</h2>
+<table class="songs-table" border="1">
+    <tr>
+        <th>Title</th>
+        <th>Release Year</th>
+        <th>URL</th>
+    </tr>
+{% for item in data %}
+    <tr>
+        <td>{{item.title}}</td>
+        <td>{{ item.release_year }}</td>
+        <td><a href="{{item.youtube_url }}" target="_blank">Listen 🎵</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

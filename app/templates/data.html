@@ -1,0 +1,25 @@
+{% extends 'master.html' %}
+{% load static %}
+
+     {% block title %}Data Table{% endblock %}
+{% block content %}
+    <h2>My Data</h2>
+    <!-- {% block page_css %}
+        <link rel="stylesheet" href="{% static 'app/master.css' %}">
+    {% endblock %} -->
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>URL</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td>{{item.name}}</td>
+        <td>{{ item.firstname }}</td>
+        <td>{{ item.youtube_url }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

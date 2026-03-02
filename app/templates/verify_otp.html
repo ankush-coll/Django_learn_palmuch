@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify OTP</title>
+     <link rel="stylesheet" href="{% static 'app/login.css' %}"/>
+     <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
+</head>
+<body>
+    <div class="login-wrapper">
+    
+    <div class="left-panel">
+            <img src="{% static 'app/pm4.jpg' %}" alt="Palak">
+        </div>
+<div class="right-panel">
+        <div class="login-box">
+            <h2 style="font-family: cursive;">Verify Your Account</h2>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label style="font-family: cursive;">Username:</label>
+        <input type="text" name="username" required>
+        <br><br>
+
+        <label style="font-family: cursive;">Enter OTP:</label>
+        <input type="text" name="otp" required>
+        <br><br>
+
+        <button style="font-family: cursive;" type="submit">Verify</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

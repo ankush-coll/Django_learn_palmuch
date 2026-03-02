@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
+
+    {% block page_css %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'app/master.css' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header class="top-header">
+    <span class="menu-btn" onclick="openMenu()">☰</span>
+</header>
+
+<div id="mySidebar" class="sidebar">
+    {% if user.is_authenticated %}
+        <h2 class="welcomeuser">Welcome {{user}} ❤️</h2>
+    {% endif %}
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'photos' %}">Photos</a>
+    <a href="{% url 'songs' %}">Songs</a>
+    {% if user.is_superuser %}
+        <a style="color: rgb(229, 187, 187); font-weight: bold;" href="{% url 'ad-dash' %}">Admin Only</a>
+    {% endif %}
+     {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% endif %}
+</div>
+    <div class="main-content">
+        {% block content %}
+    {% endblock %}
+    </div>
+
+<footer>
+    <p>© 2026 Palak Muchhal Fan Page | Designed for Learning</p>
+</footer>
+{% block page_script %}{% endblock %}
+<script src="{% static 'app/code.js' %}"></script>
+</body>
+</html>

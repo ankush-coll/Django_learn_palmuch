@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+{% load static %}
+
+    {% block title %}
+    Palak Muchhal - Photos
+    {% endblock %}
+
+    {% block page_css %}
+        <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+    {% endblock %}
+
+    {% block content %}
+        <h1>Palak Mucchal over the years ❤️</h1>
+        <div class="hero">
+        <img src="{% static 'app/pm1.jpg' %}" class="slide active"/>
+        <img src="{% static 'app/p1.jpg' %}" class="slide"/>
+        <img src="{% static 'app/pm.jpg' %}" class="slide"/>
+        <img src="{% static 'app/p2.jpg' %}" class="slide"/>
+        <img src="{% static 'app/p3.jpg' %}" class="slide"/>
+        <img src="{% static 'app/pm2.jpg' %}" class="slide"/>
+        <img src="{% static 'app/p4.jpg' %}" class="slide"/>
+        <img src="{% static 'app/pm5.jpg' %}" class="slide"/>
+        <img src="{% static 'app/pm4.jpg' %}" class="slide"/>
+        </div>
+   {% endblock %}
+
+   {% block page_script %}
+   <script src="{% static 'app/code.js' %}"></script>
+   {% endblock %}

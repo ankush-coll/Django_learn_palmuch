@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
+    
+    <link rel="stylesheet" href="{% static 'app/login.css' %}"/>
+    <title>Login Page</title>
+</head>
+<body>
+<div class="login-wrapper">
+    
+    <div class="left-panel">
+        <img src="{% static 'app/p4.jpg' %}" alt="Palak">
+    </div>
+
+    <div class="right-panel">
+        <div class="login-box">
+            <h1>Welcome Palak Muchhal Fan</h1>
+            <div class="heart">💖</div>
+            {% if form.errors %}
+                        <div class="error-box">
+                            Invalid username or password.
+                        </div>
+            {% endif %}
+            <form method="post">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Username</label>
+                    {{ form.username }}
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                    {{ form.password }}
+            </div>
+
+    <button type="submit" class="login-btn">Login</button>
+</form>
+<div class="input-group">
+        <h2 style="font-family: cursive">New User? Please click <a style="color: deeppink;", href="/app/register">Me</a></h2>
+    </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

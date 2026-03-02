@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'app/login.css' %}"/>
+    <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
+</head>
+<body>
+<div class="login-wrapper">
+    
+    <div class="left-panel">
+            <img src="{% static 'app/pm.jpg' %}" alt="Palak">
+    </div>
+    <div class="right-panel">
+        <div class="login-box">
+    <h2 style="font-family: cursive; font-size: 32px;">Create Account</h2>
+    {% if form.errors %}
+                        <div class="error-box">
+                            Invalid username or password.
+                        </div>
+            {% endif %}
+    <form method="POST" class="regform">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+    <div class="form-group">
+    <label style="font-family: cursive;">{{ form.username.label }}</label>
+    {{ form.username }}
+    <div class="error">{{ form.username.errors }}</div>
+</div>
+
+<div class="form-group">
+    <label style="font-family: cursive;">{{ form.email.label }}</label>
+    {{ form.email }}
+    <div class="error">{{ form.email.errors }}</div>
+</div>
+
+<div class="form-group">
+    <label style="font-family: cursive;">{{ form.password1.label }}</label>
+    {{ form.password1 }}
+    <div class="error">{{ form.password1.errors }}</div>
+</div>
+
+<div class="form-group">
+    <label style="font-family: cursive;">{{ form.password2.label }}</label>
+    {{ form.password2 }}
+    <div class="error">{{ form.password2.errors }}</div>
+</div>
+<br/>
+        <button type="submit">Register</button>
+    </form>
+
+    <p style="font-family: cursive;">
+        Already have an account?
+        <a href="/accounts/login/" style="font-weight: bold;">Login here</a>
+    </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

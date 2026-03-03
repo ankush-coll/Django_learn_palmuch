@@ -120,8 +120,11 @@ def register(request):
                     settings.EMAIL_HOST_USER,
                     [user.email]
                 )
-            email.attach_alternative(html_content, "text/html")
-            email.send()
+            try:
+                email.attach_alternative(html_content, "text/html")
+                email.send()
+            except Exception as e:
+                print("Email error:", str(e))
 
             # Send email
             # send_mail(

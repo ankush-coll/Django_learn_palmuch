@@ -29,9 +29,9 @@ print(BASE_DIR)
 SECRET_KEY = 'django-insecure-f%mqsjp2o&%ht9xae7&+oq^x3ir09(8dpo&dh3a9k2alhzu)(p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net"]
 
 
 # Application definition

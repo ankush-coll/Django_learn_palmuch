@@ -33,7 +33,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["https://palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net"]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net'
+]
 # Application definition
 
 INSTALLED_APPS = [

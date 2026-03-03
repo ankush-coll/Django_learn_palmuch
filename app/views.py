@@ -56,15 +56,15 @@ def data(request):
     data=Members.objects.all().values()
     return render(request, 'data.html',{'data':data})
 
-
+@login_required
 def photos(request):
     return render(request,'photos.html')
 
-
+@login_required
 def home(request):
     return render(request,'home.html')
 
-
+@login_required
 def songs(request):
     data=Songs.objects.all()
     return render(request,'songs.html',{'data':data})

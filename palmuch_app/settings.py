@@ -31,11 +31,11 @@ SECRET_KEY = 'django-insecure-f%mqsjp2o&%ht9xae7&+oq^x3ir09(8dpo&dh3a9k2alhzu)(p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net"]
+ALLOWED_HOSTS = ["https://django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net"]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net',
-    'https://www.palmuchdjango-drbadyh6e9fdgcbr.centralindia-01.azurewebsites.net'
+    'https://django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net',
+    'https://www.django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net/'
 ]
 # Application definition
 CSRF_COOKIE_SECURE = True

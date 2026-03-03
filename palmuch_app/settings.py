@@ -31,7 +31,9 @@ SECRET_KEY = 'django-insecure-f%mqsjp2o&%ht9xae7&+oq^x3ir09(8dpo&dh3a9k2alhzu)(p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net",
+                 "localhost",
+                 "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net',

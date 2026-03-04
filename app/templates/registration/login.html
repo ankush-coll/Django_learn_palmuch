@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
-    
     <link rel="stylesheet" href="{% static 'app/login.css' %}"/>
     <title>Login Page</title>
 </head>
 <body>
+  {% if messages %}
+  {% for message in messages %}
+    <script>
+        alert("{{ message }}");
+    </script>
+  {% endfor %}
+{% endif %}  
 <div class="login-wrapper">
     
     <div class="left-panel">

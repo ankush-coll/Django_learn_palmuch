@@ -104,6 +104,9 @@ def register(request):
                 <p style="font-weight:bold;">
                     Join us to enjoy her songs and know more about her 🎶
                 </p>
+                <p style="font-weight:bold;">
+                    Please note that this OTP is valid for 5 minutes and can only be used 5 times. If you did not request this, please ignore this email.
+                </p>
 
                 <br>
                 <p>
@@ -164,7 +167,7 @@ def verify_otp(request):
             return render(request, "verify_otp.html", {"error": "Too many attempts"})
 
         if check_password(entered_otp, otp_obj.otphash):
-            messages.success(request,"OTP is successfully verified")
+            messages.success(request,"OTP is successfully verified",extra_tags="otp")
             user.is_active = True
             user.save()
             otp_obj.delete()

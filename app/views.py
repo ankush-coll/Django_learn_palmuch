@@ -164,7 +164,7 @@ def verify_otp(request):
             return render(request, "verify_otp.html", {"error": "Too many attempts"})
 
         if check_password(entered_otp, otp_obj.otphash):
-            messages.success("OTP is successfully verified")
+            #messages.success("OTP is successfully verified")
             user.is_active = True
             user.save()
             otp_obj.delete()

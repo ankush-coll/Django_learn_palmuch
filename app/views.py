@@ -19,6 +19,7 @@ import os
 from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
+from django.contrib import messages
 
 def root_redirect(request):
     return redirect('/accounts/login/')
@@ -133,12 +134,11 @@ def register(request):
             #     settings.EMAIL_HOST_USER,
             #     [user.email],
             # )
-            print(form.errors)
+            #
 
             return redirect("verify-otp")
     # If form NOT valid, it must return here
         return render(request, "register.html", {"form": form})
-        print(form.errors)
     else:
         form = RegisterForm()
 
@@ -164,6 +164,7 @@ def verify_otp(request):
             return render(request, "verify_otp.html", {"error": "Too many attempts"})
 
         if check_password(entered_otp, otp_obj.otphash):
+            messages.success("OTP is successfully verified")
             user.is_active = True
             user.save()
             otp_obj.delete()

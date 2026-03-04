@@ -6,6 +6,14 @@ body {
             display: flex;
             flex-direction: column;
 }
+
+.errorimg{
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    opacity: 0.65;
+}
+
 .top-header {
     position: absolute;
     top: 0;

@@ -8,10 +8,10 @@ body {
 }
 
 .errorimg{
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 50%;
+    max-height: 60%;
     object-fit: contain;
-    opacity: 0.65;
+    opacity: 0.5;
 }
 
 .top-header {

@@ -3,9 +3,9 @@
     
 {% block title %}Wrong address{% endblock %}
 {% block content %}
-    <h1>Ooops!</h1>
+    <h1 class="oops">Ooops!</h1>
 
     <h2>I cannot find the file you requested!</h2>
     <h2>Please follow the below <a href="https://django-pal-app-b4amdwfreqe9f4bp.centralindia-01.azurewebsites.net/">Link</a></h2>
-    <img src="app/pm2.jpg"/>
+    <img src="{% static 'app/pm2.jpg' %}"/>
 {% endblock %}

@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'app.middleware.AutoLogoutMiddleware',
 ]
 
 ROOT_URLCONF = 'palmuch_app.urls'

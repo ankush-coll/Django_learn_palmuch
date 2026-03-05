@@ -15,7 +15,7 @@ class AutoLogoutMiddleware:
             last_activity = request.session.get('last_activity')
 
             if last_activity:
-                if current_time - last_activity > 60:   # 60 seconds = 1 minute
+                if current_time - last_activity > 60:   # 60 seconds = 1 minutes
                     logout(request)
                     return redirect('login')  # redirect to login page
 

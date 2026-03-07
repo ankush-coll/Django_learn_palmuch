@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{% static 'app/favicon.png' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="{% static 'app/inactivity.js' %}"></script>
 
     {% block page_css %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
-    <script src="{% static 'app/inactivity.js' %}"></script>
+    
     <link rel="stylesheet" href="{% static 'app/master.css' %}"/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     

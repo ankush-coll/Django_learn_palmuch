@@ -1,6 +1,6 @@
 function LoginSuccess(user){
     Toastify({
-        text:`Login success!! Welcome dear ${user}`,
+        text:`Login success!! Welcome dear ${user} 😄`,
         duration:3500,
         gravity:"top",
         position:"center",
@@ -11,7 +11,7 @@ function LoginSuccess(user){
 
 function OTPSuccess(){
     Toastify({
-        text:"OTP validation success!!",
+        text:"OTP validation success!! 😄",
         duration:3500,
         gravity:"top",
         position:"center",

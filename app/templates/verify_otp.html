@@ -33,12 +33,11 @@
 
         <button style="font-family: cursive;" type="submit">Verify</button>
     </form>
+    {% if otp_valid %}
     <script>
-        let otpvalid="{{otp_valid}}";
-        if(otpvalid==true){
             OTPSuccess();
-        }
-    </script>
+        </script>
+    {% endif %}
 </div>
 </div>
 </body>

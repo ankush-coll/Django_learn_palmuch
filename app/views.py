@@ -63,7 +63,7 @@ def photos(request):
 
 @login_required
 def home(request):
-    return render(request,'home.html',{"login_success": True}) #
+    return render(request,'home.html',{"login_success": True,"user_name": request.user.username}) #
 
 @login_required
 def songs(request):

@@ -63,7 +63,7 @@ def photos(request):
 
 @login_required
 def home(request):
-    return render(request,'home.html')
+    return render(request,'home.html',{"login_success": True})
 
 @login_required
 def songs(request):
@@ -148,6 +148,7 @@ def register(request):
     return render(request, "register.html", {"form": form})
 
 def verify_otp(request):
+    otp_valid = False
     if request.method == "POST":
         username = request.POST.get("username").strip()
         entered_otp = request.POST.get("otp").strip()
@@ -167,7 +168,7 @@ def verify_otp(request):
             return render(request, "verify_otp.html", {"error": "Too many attempts"})
 
         if check_password(entered_otp, otp_obj.otphash):
-            messages.success(request,"OTP is successfully verified",extra_tags="otp")
+            otp_valid = True
             user.is_active = True
             user.save()
             otp_obj.delete()
@@ -177,4 +178,4 @@ def verify_otp(request):
             otp_obj.save()
             return render(request, "verify_otp.html", {"error": "Invalid OTP"})
 
-    return render(request, "verify_otp.html")
+    return render(request, "verify_otp.html",{"otp_valid":otp_valid})

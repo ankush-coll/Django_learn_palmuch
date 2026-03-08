@@ -1,6 +1,6 @@
-function LoginSuccess(){
+function LoginSuccess(user){
     Toastify({
-        text:"Login success!!",
+        text:`Login success!! Welcome dear ${user}`,
         duration:3500,
         gravity:"top",
         position:"center",

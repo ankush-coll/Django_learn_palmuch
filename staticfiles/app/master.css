@@ -272,3 +272,34 @@ h1.oops{
 .sidebar form button:hover {
     background-color: #780336;
 }
+
+.help-box {
+    /* Position the element relative to the viewport */
+    position: fixed; 
+    /* Place it at the bottom and right edges */
+    bottom: 20px; 
+    right: 20px; 
+    /* Ensure it stays on top of other content */
+    z-index: 1000; 
+    /* Optional: add some styling for appearance */
+    background-color: #FF1493;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: center;
+    cursor: pointer;
+    /* Optional: make it a little bigger for visibility */
+    font-size: 16px; 
+}
+
+.help-link {
+    color: white;
+    text-decoration: none;
+    display: block; /* Make the whole area clickable */
+}
+
+/* Optional: Add hover effect */
+.help-box:hover {
+    background-color: #007BFF;
+}

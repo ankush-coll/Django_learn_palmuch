@@ -20,6 +20,7 @@ from django.conf import settings
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib import messages
+from openai import AzureOpenAI
 
 def root_redirect(request):
     return redirect('/accounts/login/')
@@ -69,6 +70,60 @@ def home(request):
 def songs(request):
     data=Songs.objects.all()
     return render(request,'songs.html',{'data':data})
+
+@login_required
+def aitalk(request):
+    endpoint = os.getenv("ENDPOINT")
+    deployment = os.getenv("DEPLOYMENT_NAME")
+    subscription_key = os.getenv("API_KEY")
+    api_version = os.getenv("API_VERSION")
+
+    client = AzureOpenAI(
+        api_version=api_version,
+        azure_endpoint=endpoint,
+        api_key=subscription_key,
+    )
+
+    # initialize session memory
+    if "messages" not in request.session:
+        request.session["messages"] = [
+            {
+                "role": "system",
+                "content": """You are an AI assistant that strictly enforces a single-topic conversation.
+
+Allowed topic: Palak Muchhal.
+
+Rules:
+1. Ask ONLY questions about Palak Muchhal.
+2. After each question, say exactly:
+I cannot answer any questions other than those related to Palak Muchhal.
+3. Do not answer anything.
+4. Reject unrelated queries with the same line.
+5. No explanations. Never break character."""
+            }
+        ]
+
+    if request.method == "POST":
+        user_input = request.POST.get("message")
+
+        messages = request.session["messages"]
+        messages.append({"role": "user", "content": user_input})
+
+        response = client.chat.completions.create(
+            model=deployment,
+            messages=messages,
+            max_tokens=200
+        )
+
+        reply = response.choices[0].message.content
+        messages.append({"role": "assistant", "content": reply})
+
+        request.session["messages"] = messages
+
+        #return render(request, "aichat.html", {"chat": messages})
+        return redirect("ait")
+
+    return render(request, "aichat.html", {"chat": request.session["messages"]})
 
 def register(request):
     if request.method == "POST":

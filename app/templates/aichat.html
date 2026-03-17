@@ -1,0 +1,27 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}Chat with AI{% endblock %}
+
+{% block page_css %}
+        <link rel="stylesheet" href="{% static 'app/aics.css' %}">
+    {% endblock %}
+
+{% block content %}
+<h2>Let's know more about Palak Mucchal ❤️</h2>
+<div class="chat-container">
+    {% for msg in chat %}
+        {% if msg.role == "user" %}
+            <div class="msg user">{{ msg.content }}</div>
+        {% elif msg.role == "assistant" %}
+            <div class="msg assistant">{{ msg.content }}</div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<form method="POST" class="input-box">
+    {% csrf_token %}
+    <input type="text" name="message" placeholder="Type your message..." required>
+    <button type="submit" class="btn">Send</button>
+</form>
+<br/>
+{% endblock %}

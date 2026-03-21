@@ -303,3 +303,10 @@ h1.oops{
 .help-box:hover {
     background-color: #007BFF;
 }
+
+.aligncen{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px;
+}

@@ -1,4 +1,5 @@
 {% extends "master.html" %}
+{% load static %}
 {% block title %}
     Palak Muchhal - Official Fan Page
 {% endblock %}
@@ -37,7 +38,7 @@
         </p>
     </div>
 
-    <div class="section">
+    <div class="aligncen">
         <h2>Popular Songs</h2>
         <ul>
             <li>Kaun Tujhe</li>
@@ -46,8 +47,12 @@
             <li>Teri Meri Kahaani</li>
         </ul>
         <a href="https://youtu.be/xqBr4FP6r6Q?si=bzCHWkmZYxnlXVpE" class="btn">Listen Now</a>
-    </div>
-
+        <h2>Listen to her melodious song</h2>
+        <video controls width="400" style="align-items: center;">
+            <source src="{% static 'app/pm.mp4' %}" type="video/mp4">
+        </video>
+        </div>
+        
 </div>
 <div class="help-box">
         <a href="{% url 'ait' %}" class="help-link">Need Help? 🤖</a>

@@ -1,0 +1,35 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block title %}User Account{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2>Hello {{user}}!! find your user details</h2>
+
+<table class="songs-table" border="1">
+    <tr>
+        <td>User Name</td>
+        <td>{{user.username}}</td>
+    </tr>
+    <tr>
+        <td>Email </td> 
+        <td>{{user.email}}</td>
+    </tr>
+    <tr>
+        <td>First Name</td>
+        <td>{{ user.first_name|default:"None" }}</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>{{ user.last_name|default:"None" }}</td>
+    </tr>
+    <tr>
+        <td>Last login</td>
+        <td>{{ user.last_login|date:"d M Y, h:i A" }}</td>
+    </tr>
+</table>
+{% endif %}
+{% endblock %}

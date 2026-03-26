@@ -67,6 +67,10 @@ def home(request):
     return render(request,'home.html',{"login_success": True,"user_name": request.user.username}) #
 
 @login_required
+def user_account(request):
+    return render(request,'user_account.html',{"username":request.user.username})
+
+@login_required
 def songs(request):
     data=Songs.objects.all()
     return render(request,'songs.html',{'data':data})

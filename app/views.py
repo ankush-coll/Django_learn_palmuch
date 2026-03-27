@@ -54,7 +54,7 @@ def get_spotify_token():
 def get_top_tracks(request):
     token_data = get_spotify_token()
     access_token = token_data.get("access_token")
-    id="3yMmYEklQ7gLOZXEFNd3xr"
+    id=os.getenv("artist_id")
 
     url = f"https://api.spotify.com/v1/artists/{id}/albums"
     headers = {

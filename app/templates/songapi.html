@@ -1,0 +1,19 @@
+<div id="songs"></div>
+
+<script>
+fetch("/app/api/songs/")
+  .then(res => res.json())
+  .then(data => {
+    let container = document.getElementById("songs");
+
+    data.songs.forEach(song => {
+      container.innerHTML += `
+        <div>
+          <h3>${song.name}</h3>
+          <p>${song.artist}</p>
+          <img src="${song.image}" width="100"/>
+        </div>
+      `;
+    });
+  });
+</script>

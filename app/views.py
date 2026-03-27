@@ -3,6 +3,7 @@ from .models import Members, Songs
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 import random
+from django.http import JsonResponse
 from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.hashers import make_password, check_password
@@ -21,11 +22,59 @@ from django.utils import timezone
 from datetime import timedelta
 from django.contrib import messages
 from openai import AzureOpenAI
+import base64
+import requests
 
 def root_redirect(request):
     return redirect('/accounts/login/')
 
 # Create your views here.
+
+def get_spotify_token():
+    client_id=os.getenv("client_id")
+    client_secret=os.getenv("client_secret")
+
+    credentials=f"{client_id}:{client_secret}"
+    encoded_credentials = base64.b64encode(credentials.encode()).decode()
+
+    url = "https://accounts.spotify.com/api/token"
+
+    headers = {
+        "Authorization": f"Basic {encoded_credentials}",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
+    data = {
+        "grant_type": "client_credentials"
+    }
+
+    response = requests.post(url, headers=headers, data=data)
+    return response.json()
+
+def get_top_tracks(request):
+    token_data = get_spotify_token()
+    access_token = token_data.get("access_token")
+    id="3yMmYEklQ7gLOZXEFNd3xr"
+
+    url = f"https://api.spotify.com/v1/artists/{id}/albums"
+    headers = {
+        "Authorization": f"Bearer {access_token}"
+    }
+
+    params = {
+        "market": "IN",
+        "limit": 5
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    if response.status_code != 200:
+        return JsonResponse({
+            "error": response.text
+        })
+
+    data = response.json()
+    return JsonResponse({"albums": data})
 
 @staff_member_required
 def admin_dashboard(request):

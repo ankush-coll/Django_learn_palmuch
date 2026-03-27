@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import data,photos, home,songs, register, user_account, aitalk, verify_otp, admin_dashboard
+from .views import data,photos, home,songs,get_top_tracks, register, user_account, aitalk, verify_otp, admin_dashboard
 
 urlpatterns=[
     path('home/',home,name='home'),
@@ -10,5 +10,6 @@ urlpatterns=[
     path("verify-otp/", verify_otp, name="verify-otp"),
     path("admin_dash/",admin_dashboard,name='ad-dash'),
     path("ai/",aitalk,name='ait'),
-    path("user/",user_account,name='user_account')
+    path("user/",user_account,name='user_account'),
+    path("api/songs/",get_top_tracks)
 ]

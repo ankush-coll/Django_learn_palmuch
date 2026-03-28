@@ -1,19 +1,53 @@
-<div id="songs"></div>
+{% extends 'master.html' %}
+{% load static %}
 
-<script>
-fetch("/app/api/songs/")
-  .then(res => res.json())
-  .then(data => {
-    let container = document.getElementById("songs");
+{% block title%}Top Tracks and Albums{% endblock %}
 
-    data.songs.forEach(song => {
-      container.innerHTML += `
-        <div>
-          <h3>${song.name}</h3>
-          <p>${song.artist}</p>
-          <img src="${song.image}" width="100"/>
-        </div>
-      `;
-    });
-  });
-</script>
+{% block content %}
+<div class="song-header">
+  <img src="{% static 'app/pm2.jpg' %}" width="150">
+<h1>Palak Muchhal Top Tracks and Albums ❤️</h1>
+</div>
+<!-- {% if artist_banner %}
+ <td> <img src="{{ artist_banner }}" width="600"> </td>
+{% endif %}
+
+🎤 Profile
+{% if artist_thumb %}
+ <td> <img src="{{ artist_thumb }}" width="200"> </td>
+{% endif %} -->
+
+<h2>Top Tracks ❤️</h2>
+<table class="songs-table" border="1">
+  {% for song in songs %}
+     <tr>
+      <td><img src="{{ song.artworkUrl100 }}" width="150"></td>
+      <td><p>{{ song.trackName }}</p></td>
+
+      </tr> 
+
+      {% if song.previewUrl %}
+      <tr>
+        <td colspan="2">
+          <audio controls>
+            <source src="{{ song.previewUrl }}" type="audio/mpeg">
+          </audio>
+        </td>
+      </tr>
+      {% endif %}
+  {% endfor %}
+</table>
+
+<h2>Albums ❤️</h2>
+<table class="songs-table" border="1">
+  {% for album in albums %}
+    <tr>
+      <td><img src="{{ album.artworkUrl100 }}" width="150"></td>
+      <td><p>{{ album.collectionName }}</p></td>
+    </tr>
+  {% endfor %}
+  </table>
+
+
+
+{% endblock %}

@@ -244,6 +244,22 @@ html, body{
     font-style: oblique;
 }
 
+.song-header{
+    display: flex; 
+    background-color: #C5107B; 
+    align-items: center; 
+    gap: 20px; 
+    justify-content: center;
+}
+
+.song-header img{
+    border-radius: 10px;
+}
+
+.song-header h1{
+    color: azure;
+}
+
 .logout-form {
     margin: 0;
 }

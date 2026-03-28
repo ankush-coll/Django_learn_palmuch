@@ -30,51 +30,71 @@ def root_redirect(request):
 
 # Create your views here.
 
-def get_spotify_token():
-    client_id=os.getenv("client_id")
-    client_secret=os.getenv("client_secret")
+# def get_spotify_token():
+#     client_id=os.getenv("client_id")
+#     client_secret=os.getenv("client_secret")
 
-    credentials=f"{client_id}:{client_secret}"
-    encoded_credentials = base64.b64encode(credentials.encode()).decode()
+#     credentials=f"{client_id}:{client_secret}"
+#     encoded_credentials = base64.b64encode(credentials.encode()).decode()
 
-    url = "https://accounts.spotify.com/api/token"
+#     url = "https://accounts.spotify.com/api/token"
 
-    headers = {
-        "Authorization": f"Basic {encoded_credentials}",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+#     headers = {
+#         "Authorization": f"Basic {encoded_credentials}",
+#         "Content-Type": "application/x-www-form-urlencoded"
+#     }
 
-    data = {
-        "grant_type": "client_credentials"
-    }
+#     data = {
+#         "grant_type": "client_credentials"
+#     }
 
-    response = requests.post(url, headers=headers, data=data)
-    return response.json()
-
+#     response = requests.post(url, headers=headers, data=data)
+#     return response.json()
+@login_required
 def get_top_tracks(request):
-    token_data = get_spotify_token()
-    access_token = token_data.get("access_token")
-    id=os.getenv("artist_id")
-
-    url = f"https://api.spotify.com/v1/artists/{id}/albums"
-    headers = {
-        "Authorization": f"Bearer {access_token}"
+    #Get songs (Top Tracks)
+    song_url = "https://itunes.apple.com/search"
+    song_params = {
+        "term": "palak muchhal",
+        "entity": "song",
+        "limit": 10
     }
+    # art_url = "https://www.theaudiodb.com/api/v1/json/2/search.php"
+    # art_params = {"s": "Palak Muchhal"}
 
-    params = {
-        "market": "IN",
-        "limit": 5
+    # art_res = requests.get(art_url, params=art_params).json()
+    # artist = art_res["artists"][0]
+
+    # artist_thumb = artist.get("strArtistThumb")
+    # artist_banner = artist.get("strArtistFanart")
+
+    song_res = requests.get(song_url, params=song_params).json()
+    songs = song_res.get("results", [])
+
+    # Get albums
+    album_params = {
+        "term": "palak muchhal",
+        "entity": "album",
+        "limit": 10
     }
+    album_res = requests.get(song_url, params=album_params).json()
+    albums = album_res.get("results", [])
 
-    response = requests.get(url, headers=headers, params=params)
+    for song in songs:
+        if "artworkUrl100" in song:
+            song["artworkUrl100"] = song["artworkUrl100"].replace("100x100", "500x500")
 
-    if response.status_code != 200:
-        return JsonResponse({
-            "error": response.text
-        })
+    for album in albums:
+        if "artworkUrl100" in album:
+            album["artworkUrl100"] = album["artworkUrl100"].replace("100x100", "500x500")
 
-    data = response.json()
-    return JsonResponse({"albums": data})
+    context = {
+        "songs": songs,
+        "albums": albums,
+        # "artist_thumb": artist_thumb,
+        # "artist_banner": artist_banner
+    }
+    return render(request, "songapi.html", context)
 
 @staff_member_required
 def admin_dashboard(request):

@@ -132,6 +132,10 @@ def photos(request):
     return render(request,'photos.html')
 
 @login_required
+def about(request):
+    return render(request,'about.html')
+
+@login_required
 def home(request):
     return render(request,'home.html',{"login_success": True,"user_name": request.user.username}) #
 

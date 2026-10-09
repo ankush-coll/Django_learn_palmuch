@@ -1,5 +1,5 @@
-let warningTime = 4 * 60 * 1000; 
-let logoutTime = 5 * 60 * 1000;
+let warningTime = 9 * 60 * 1000; 
+let logoutTime = 10 * 60 * 1000;
 
 let warningTimer;
 let logoutTimer;

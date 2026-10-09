@@ -33,6 +33,7 @@
     <a href="{% url 'home' %}">Home</a>
     <a href="{% url 'photos' %}">Photos</a>
     <a href="{% url 'songs' %}">Songs</a>
+    <a href="{% url 'about' %}">About</a>
     {% if user.is_superuser %}
         <a style="color: rgb(229, 187, 187); font-weight: bold;" href="{% url 'ad-dash' %}">Admin Only</a>
     {% endif %}
